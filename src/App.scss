@@ -61,33 +61,27 @@ h2 {
   font-size: $font-mid;
 }
 
-ul {
-  display: grid;
-  gap: 10px;
+@mixin flex($align, $justify, $gap, $direction: row) {
+  display: flex;
+  flex-direction: $direction;
+  align-items: $align;
+  justify-content: $justify;
+  gap: $gap;
 }
 
-li {
-  &:hover {
-    background-color: lightgray;
-  }
-  color: $color-blue;
-  font-weight: $font-thin;
-  font-size: $font-small;
-  p {
-    color: black;
-    font-weight: $font-bold;
-  }
-  section {
-    color: blue;
-  }
-  article {
-    color: orange;
+@mixin font($color, $size, $weight) {
+  color: $color;
+  font-size: $size;
+  font-weight: $weight;
+}
 
-    h3 {
-      color: green;
-    }
-  }
-  h2 {
-    color: pink;
-  }
+ul {
+  @include flex(start, center, 10px, column);
+  @include font(blue, $font-mid, $font-bold);
+}
+
+section {
+  width: 90vw;
+  @include font($color-blue, $font-small, $font-thin);
+  @include flex(center, space-between, 20px);
 }
